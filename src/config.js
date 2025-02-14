@@ -1,3 +1,5 @@
+import Phaser from 'phaser';
+
 export const CONFIG = {
   type: Phaser.AUTO,
   width: window.innerWidth,
@@ -5,7 +7,7 @@ export const CONFIG = {
   parent: 'game-container',
   // backgroundColor: "#028af8",
   scale: {
-    mode: Phaser.Scale.FIT,
+    mode: Phaser.Scale.RESIZE,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
 };

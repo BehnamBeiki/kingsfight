@@ -1,17 +1,19 @@
 import Phaser from 'phaser';
 import { CONFIG } from './config';
 import { SCENES } from './scenes';
-// import Resize from './resize';
+import { resizeWindow } from './resizeWindow';
 
-export default new Phaser.Game({
+// export default new Phaser.Game({
+//   ...CONFIG,
+//   scene: SCENES,
+// });
+
+const game = new Phaser.Game({
   ...CONFIG,
   scene: SCENES,
 });
 
-// const game = new Phaser.Game({
-//   ...CONFIG,
-//   scene: SCENES,
-// });
+resizeWindow(game);
 
 // game.events.once('Boot', () => {
 //   const resizeHandler = new Resize(game);

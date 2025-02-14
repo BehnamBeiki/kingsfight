@@ -40,8 +40,8 @@ export class Game extends Scene {
     info = this.add
       .text(this.cameras.main.width / 2, 580, "", {
         fontFamily: "Humongous of Eternity St",
-        fontSize: 24,
-        fontStyle: "bold",
+        fontSize: 20,
+        fontStyle: "normal",
         color: "#ede9e0",
       })
       .setShadow(1.5, 1, "#965515", 1)
@@ -102,8 +102,8 @@ export class Game extends Scene {
             this.add
               .text(this.cameras.main.width / 2, 470, `YOU LOSE`, {
                 fontFamily: "Humongous of Eternity St",
-                fontSize: 24,
-                fontStyle: "bold",
+                fontSize: 20,
+                fontStyle: "normal",
                 color: "#ede9e0",
               })
               .setShadow(1.5, 1, "#965515", 1)
@@ -115,8 +115,8 @@ export class Game extends Scene {
           this.add
             .text(this.cameras.main.width / 2, 120, `YOU WIN`, {
               fontFamily: "Humongous of Eternity St",
-              fontSize: 24,
-              fontStyle: "bold",
+              fontSize: 20,
+              fontStyle: "normal",
               color: "#ede9e0",
             })
             .setShadow(1.5, 1, "#965515", 1)

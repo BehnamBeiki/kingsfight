@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { CONFIG } from './config';
 import { SCENES } from './scenes';
 import { resizeWindow } from './resizeWindow';
+// import { Resize } from './resizeWindow';
 
 // export default new Phaser.Game({
 //   ...CONFIG,

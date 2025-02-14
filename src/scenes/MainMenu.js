@@ -1,4 +1,4 @@
-import { Scene } from "phaser";
+import { Scene } from 'phaser';
 
 let start,
   info,
@@ -9,22 +9,22 @@ let start,
 
 export class MainMenu extends Scene {
   constructor() {
-    super("MainMenu");
+    super('MainMenu');
   }
 
   init() {}
 
   create() {
-    this.add.image(480, 360, "bg");
-    let card1 = ["king", "dragon", "wolf", "bear", "snake", "panter", "staff"];
+    this.add.image(480, 360, 'bg');
+    let card1 = ['king', 'dragon', 'wolf', 'bear', 'snake', 'panter', 'staff'];
     let card2 = [
-      "sheild",
-      "flame",
-      "fruit",
-      "ogre",
-      "centaur",
-      "troll",
-      "devil",
+      'sheild',
+      'flame',
+      'fruit',
+      'ogre',
+      'centaur',
+      'troll',
+      'devil',
     ];
     let left = 0;
     let left1 = 0;
@@ -33,52 +33,52 @@ export class MainMenu extends Scene {
     for (let i = 0; i <= 6; i++) {
       let cards1 = this.add.image((left += j), 120, card1[i]);
       cards1.setInteractive();
-      cards1.name = "cards1-" + i;
+      cards1.name = 'cards1-' + i;
 
       let cards2 = this.add.image((left1 += j), 320, card2[i]);
       cards2.setInteractive();
-      cards2.name = "cards2-" + i;
+      cards2.name = 'cards2-' + i;
 
-      cards1.on("clicked", this.clickHandler, this);
-      cards2.on("clicked", this.clickHandler, this);
+      cards1.on('clicked', this.clickHandler, this);
+      cards2.on('clicked', this.clickHandler, this);
     }
 
     this.input.on(
-      "gameobjectup",
+      'gameobjectup',
       function (pointer, gameObject) {
-        gameObject.emit("clicked", gameObject);
+        gameObject.emit('clicked', gameObject);
       },
       this
     );
 
-    start = this.add.image(480, 650, "online_button").setInteractive();
+    start = this.add.image(480, 650, 'online_button').setInteractive();
     start.on(
-      "pointerup",
+      'pointerup',
       function () {
-        this.scene.start("Game");
+        this.scene.start('Game');
         select = 0;
       },
       this
     );
 
     info = this.add
-      .text(this.cameras.main.width / 2, 500, "", {
-        fontFamily: "Humongous of Eternity St",
+      .text(this.cameras.main.width / 2, 500, '', {
+        fontFamily: 'Humongous of Eternity St',
         fontSize: 20,
-        fontStyle: "normal",
-        color: "#ede9e0",
+        fontStyle: 'normal',
+        color: '#ede9e0',
       })
-      .setShadow(1.5, 1, "#965515", 1)
+      .setShadow(1.5, 1, '#965515', 1)
       .setOrigin(0.5);
 
     warning = this.add
-      .text(this.cameras.main.width / 2, 570, "", {
-        fontFamily: "Humongous of Eternity St",
+      .text(this.cameras.main.width / 2, 570, '', {
+        fontFamily: 'Humongous of Eternity St',
         fontSize: 20,
-        fontStyle: "normal",
-        color: "#ede9e0",
+        fontStyle: 'normal',
+        color: '#ede9e0',
       })
-      .setShadow(1.5, 1, "#965515", 1)
+      .setShadow(1.5, 1, '#965515', 1)
       .setOrigin(0.5);
 
     this.input.mouse.disableContextMenu();

@@ -16,6 +16,9 @@ module.exports = {
     path: path.resolve(process.cwd(), "dist"),
     filename: "./bundle.min.js",
   },
+  resolve: {
+    extensions: ['.js']
+  },
   devtool: false,
   performance: {
     maxEntrypointSize: 2500000,

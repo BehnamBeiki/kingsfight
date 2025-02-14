@@ -1,20 +1,20 @@
-import { Boot } from './scenes/Boot';
-import { Preloader } from './scenes/Preloader';
-import { MainMenu } from './scenes/MainMenu';
-import { Game } from './scenes/Game';
-import { GameOver } from './scenes/GameOver';
+import Phaser from 'phaser';
+import { CONFIG } from './config';
+import { SCENES } from './scenes';
+import Resize from './resize';
+// import { Resize } from './resize';
 
-const config = {
-  type: Phaser.AUTO,
-  width: 1024,
-  height: 768,
-  parent: 'game-container',
-  // backgroundColor: "#028af8",
-  scale: {
-    mode: Phaser.Scale.FIT,
-    autoCenter: Phaser.Scale.CENTER_BOTH,
-  },
-  scene: [Boot, Preloader, MainMenu, Game, GameOver],
-};
+const game = new Phaser.Game({
+  ...CONFIG,
+  scene: SCENES,
+});
 
-export default new Phaser.Game(config);
+game.events.once('Boot', () => {
+  const resizeHandler = new Resize(game);
+  resizeHandler.init();
+});
+
+// window.addEventListener('resize', () => Resize(game));
+// game.events.on('ready', () => {
+//   Resize(game);
+// });

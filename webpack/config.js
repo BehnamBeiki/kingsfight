@@ -11,9 +11,9 @@ module.exports = {
     path: path.resolve(process.cwd(), 'dist'),
     filename: 'bundle.min.js',
   },
-  resolve: {
-    extensions: ['.js'],
-  },
+  // resolve: {
+  //   extensions: ['.js'],
+  // },
   module: {
     rules: [
       {

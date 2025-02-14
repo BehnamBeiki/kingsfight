@@ -126,17 +126,17 @@ export class Game extends Scene {
       this
     );
 
-    function onStartHandler(tween, targets, cards) {
+    function onStartHandler() {
       ground.texture = player.texture;
       play.setVisible(false);
       round++;
     }
 
-    function onCompleteHandler(tween, targets, cards) {
+    function onCompleteHandler() {
       npc.setVisible(true);
     }
 
-    function onCompleteHandler1(tween, targets, cards1) {
+    function onCompleteHandler1() {
       ground.texture = npc.texture;
       play.setVisible(true);
     }

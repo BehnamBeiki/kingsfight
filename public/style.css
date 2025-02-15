@@ -31,3 +31,10 @@ canvas {
   align-items: center;
   display: flex;
 }
+
+@font-face {
+  font-family: 'Humongous of Eternity St';
+  src: url('/assets/Humongous of Eternity St.ttf');
+  font-weight: normal;
+  font-style: normal;
+}

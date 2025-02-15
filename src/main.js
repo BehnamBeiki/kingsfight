@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+// import '/public/style.css';
 import { CONFIG } from './config';
 import { SCENES } from './scenes';
 // import { resizeWindow } from './resizeWindow';

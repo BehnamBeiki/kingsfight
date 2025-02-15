@@ -86,7 +86,7 @@ module.exports = {
       patterns: [
         { from: 'public/assets', to: 'assets' },
         // {from: 'public/favicon.p ng', to: 'favicon.png' },
-        { from: 'public/style.css', to: 'style.css' },
+        { from: 'src/style.css', to: 'style.css' },
       ],
     }),
   ],

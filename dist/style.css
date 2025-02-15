@@ -34,7 +34,7 @@ canvas {
 
 @font-face {
   font-family: 'Humongous of Eternity St';
-  src: url('/assets/Humongous of Eternity St.ttf');
+  src: url('/public/assets/Humongous of Eternity St.ttf');
   font-weight: normal;
   font-style: normal;
 }

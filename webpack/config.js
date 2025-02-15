@@ -34,6 +34,19 @@ module.exports = {
         test: /\.(gif|png|jpe?g|svg|xml|glsl)$/i,
         use: 'file-loader',
       },
+      // CSS Loader
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      // Font Loader (Handles .woff, .woff2, .eot, .ttf, .otf)
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource', // Emits fonts as separate files
+        generator: {
+          filename: 'fonts/[name][ext]', // Saves fonts in 'dist/fonts'
+        },
+      },
     ],
   },
   plugins: [

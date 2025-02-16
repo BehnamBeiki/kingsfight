@@ -41,11 +41,13 @@ module.exports = {
       },
 
       {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        test: /\.(png|jpg|gif|woff|woff2|ttf|eot|otf)$/,
         type: 'asset/resource',
-        generator: {
-          filename: 'assets/fonts/[name][ext]',
-        },
+        generator: { filename: 'assets/fonts/[name][ext]' },
+      },
+      {
+        test: /\.(fnt|xml|json)$/,
+        type: 'asset/source',
       },
     ],
   },

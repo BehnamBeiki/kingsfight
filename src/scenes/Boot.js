@@ -6,6 +6,11 @@ export class Boot extends Scene {
   }
 
   preload() {
+    this.load.bitmapFont(
+      'Syncopate',
+      'assets/fonts/Syncopate_0.png',
+      'assets/fonts/Syncopate.fnt'
+    );
     // let font = new FontFace('Crimson', 'url(assets/fonts/Crimson.ttf)');
     // font.load().then((loadedFont) => {
     //   document.fonts.add(loadedFont);

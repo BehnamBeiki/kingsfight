@@ -1,5 +1,13 @@
+/* @font-face {
+  font-family: 'Crimson';
+  src: url('/public/assets/fonts/Crimson.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+} */
+
 html,
 body {
+  /* font-family: 'Crimson', serif; */
   margin: 0;
   padding: 0;
   background: black;
@@ -21,10 +29,3 @@ canvas {
   align-items: center;
   display: flex;
 }
-
-/* @font-face {
-  font-family: 'Crimson';
-  src: url('/public/assets/fonts/Crimson.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-} */

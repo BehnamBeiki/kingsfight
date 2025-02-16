@@ -12,8 +12,6 @@ export class MainMenu extends Scene {
     super('MainMenu');
   }
 
-  init() {}
-
   create() {
     this.add.image(480, 360, 'bg');
     let card1 = ['king', 'dragon', 'wolf', 'bear', 'snake', 'panter', 'staff'];
@@ -61,6 +59,13 @@ export class MainMenu extends Scene {
       this
     );
 
+    // const centerX = this.scale.width / 2;
+    // const centerY = this.scale.height / 2;
+    // const leftHalf = this.scale.width / 4;
+    // const rightHalf = (this.scale.width * 3) / 4;
+    // const topHalf = this.scale.height / 4;
+    // const bottomHalf = (this.scale.height * 3) / 4;
+
     info = this.add
       .text(this.cameras.main.width / 2, 500, '', {
         fontFamily: 'Crimson',
@@ -70,12 +75,22 @@ export class MainMenu extends Scene {
       .setOrigin(0.5);
 
     warning = this.add
-      .text(this.cameras.main.width / 2, 570, '', {
-        fontFamily: 'Crimson',
-        fontSize: '20px',
-        color: '#ede9e0',
-      })
+      .bitmapText(
+        this.scale.width / 2,
+        (this.scale.height * 3) / 4,
+        'Syncopate',
+        'Hello, Phaser!',
+        32
+      )
       .setOrigin(0.5);
+
+    // warning = this.add
+    //   .text(this.cameras.main.width / 2, 570, '', {
+    //     fontFamily: 'Crimson',
+    //     fontSize: '20px',
+    //     color: '#ede9e0',
+    //   })
+    //   .setOrigin(0.5);
 
     this.input.mouse.disableContextMenu();
   }

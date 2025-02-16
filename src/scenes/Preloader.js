@@ -25,6 +25,7 @@ export class Preloader extends Scene {
     this.load.image('troll', 'group_1045.png');
     this.load.image('devil', 'group_1067.png');
   }
+
   create() {
     this.scene.start('MainMenu');
   }

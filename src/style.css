@@ -4,6 +4,9 @@ body {
   padding: 0;
   background: black;
   overflow: hidden;
+  font-family: 'Crimson', serif; /* Applying font-family to text elements */
+  font-size: 40px; /* Added unit to font-size */
+  color: red;
   /* overflow: auto; */
 }
 
@@ -33,8 +36,10 @@ canvas {
 }
 
 @font-face {
-  font-family: 'Humongous of Eternity St';
-  src: url('/public/assets/Humongous of Eternity St.ttf');
+  font-family: 'Crimson';
+  src: url('/public/assets/fonts/Crimson.ttf');
+  /* font-size: 40 0-px;
   font-weight: normal;
   font-style: normal;
+  color: red; */
 }

@@ -6,7 +6,7 @@ export class Preloader extends Scene {
   }
 
   preload() {
-    this.load.setPath('assets');
+    this.load.setPath('assets/images');
     this.load.image('bg', 'space.png');
     this.load.image('play_button', 'play_button.png');
     this.load.image('online_button', 'online_button.png');

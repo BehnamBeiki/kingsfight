@@ -64,19 +64,17 @@ export class MainMenu extends Scene {
     info = this.add
       .text(this.cameras.main.width / 2, 500, '', {
         fontFamily: 'Crimson',
-        // fontSize: 30,
-        // fontStyle: 'bold',
-        // color: '#ede9e0',
+        fontSize: '20px',
+        color: '#ede9e0',
       })
-      .setShadow(1.5, 1, '#965515', 1)
       .setOrigin(0.5);
 
     warning = this.add
       .text(this.cameras.main.width / 2, 570, '', {
         fontFamily: 'Crimson',
-        // color: '#FF0000',
+        fontSize: '20px',
+        color: '#ede9e0',
       })
-      .setShadow(1.5, 1, '#965515', 1)
       .setOrigin(0.5);
 
     this.input.mouse.disableContextMenu();

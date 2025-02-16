@@ -5,7 +5,13 @@ export class Boot extends Scene {
     super('Boot');
   }
 
-  preload() {}
+  preload() {
+    // let font = new FontFace('Crimson', 'url(assets/fonts/Crimson.ttf)');
+    // font.load().then((loadedFont) => {
+    //   document.fonts.add(loadedFont);
+    //   return document.fonts.ready;
+    // });
+  }
 
   create() {
     this.scene.start('Preloader');

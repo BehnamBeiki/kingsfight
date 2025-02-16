@@ -16,9 +16,9 @@ export class GameOver extends Scene {
     info = this.add
       .text(this.cameras.main.width / 2, 300, '', {
         fontFamily: 'Crimson',
+        fontSize: '20px',
         color: '#ede9e0',
       })
-      .setShadow(1.5, 1, '#965515', 1)
       .setOrigin(0.5);
 
     info.setText(`            Written by :

@@ -40,9 +40,9 @@ export class Game extends Scene {
     info = this.add
       .text(this.cameras.main.width / 2, 580, '', {
         fontFamily: 'Crimson',
+        fontSize: '20px',
         color: '#ede9e0',
       })
-      .setShadow(1.5, 1, '#965515', 1)
       .setOrigin(0.5);
 
     start = this.add
@@ -100,6 +100,7 @@ export class Game extends Scene {
             this.add
               .text(this.cameras.main.width / 2, 470, `YOU LOSE`, {
                 fontFamily: 'Crimson',
+                fontSize: '20px',
                 color: '#ede9e0',
               })
               .setShadow(1.5, 1, '#965515', 1)
@@ -111,9 +112,9 @@ export class Game extends Scene {
           this.add
             .text(this.cameras.main.width / 2, 120, `YOU WIN`, {
               fontFamily: 'Crimson',
+              fontSize: '20px',
               color: '#ede9e0',
             })
-            .setShadow(1.5, 1, '#965515', 1)
             .setOrigin(0.5);
         }
       },

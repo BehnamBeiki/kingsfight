@@ -84,14 +84,6 @@ export class MainMenu extends Scene {
       )
       .setOrigin(0.5);
 
-    // warning = this.add
-    //   .text(this.scale.width / 2, (this.scale.height * 3) / 4, '', {
-    //     fontFamily: 'Tahoma',
-    //     fontSize: '20px',
-    //     color: '#ede9e0',
-    //   })
-    //   .setOrigin(0.5);
-
     this.input.mouse.disableContextMenu();
   }
 

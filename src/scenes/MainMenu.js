@@ -49,7 +49,9 @@ export class MainMenu extends Scene {
       this
     );
 
-    start = this.add.image(480, 650, 'online_button').setInteractive();
+    start = this.add
+      .image(this.scale.width / 2, (this.scale.height * 7) / 8, 'online_button')
+      .setInteractive();
     start.on(
       'pointerup',
       function () {
@@ -67,26 +69,24 @@ export class MainMenu extends Scene {
     // const bottomHalf = (this.scale.height * 3) / 4;
 
     info = this.add
-      .text(this.cameras.main.width / 2, 500, '', {
-        fontFamily: 'Crimson',
-        fontSize: '20px',
-        color: '#ede9e0',
-      })
+      .bitmapText(
+        this.scale.width / 2,
+        (this.scale.height * 2) / 3,
+        'Syncopate'
+      )
       .setOrigin(0.5);
 
     warning = this.add
       .bitmapText(
         this.scale.width / 2,
         (this.scale.height * 3) / 4,
-        'Syncopate',
-        'Hello, Phaser!',
-        32
+        'Syncopate'
       )
       .setOrigin(0.5);
 
     // warning = this.add
-    //   .text(this.cameras.main.width / 2, 570, '', {
-    //     fontFamily: 'Crimson',
+    //   .text(this.scale.width / 2, (this.scale.height * 3) / 4, '', {
+    //     fontFamily: 'Tahoma',
     //     fontSize: '20px',
     //     color: '#ede9e0',
     //   })

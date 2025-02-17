@@ -14,22 +14,17 @@ export class GameOver extends Scene {
     start = this.add.image(480, 650, 'online_button').setInteractive();
 
     info = this.add
-      .text(this.cameras.main.width / 2, 300, '', {
-        fontSize: '20px',
-        color: '#ede9e0',
-      })
+      .bitmapText(
+        this.scale.width / 2,
+        this.scale.height / 2,
+        'Syncopate',
+        'Made by BehnamBeiki.ir'
+      )
       .setOrigin(0.5);
 
-    info.setText(`            Written by :
-    
-    
-               Behnam Beiki
-    
-              -VirtualLich-
-        
-      behnam_beiki@yahoo.com
-        
-        `);
+    //     info.setText(`Made by
+    // behnambeiki.ir
+    // `);
 
     start.on(
       'pointerup',

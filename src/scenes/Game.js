@@ -38,11 +38,7 @@ export class Game extends Scene {
     ground = this.add.image(480, 300, 'bg');
 
     info = this.add
-      .text(this.cameras.main.width / 2, 580, '', {
-        fontFamily: 'Crimson',
-        fontSize: '20px',
-        color: '#ede9e0',
-      })
+      .bitmapText(this.scale.width / 2, this.scale.height / 2, 'Syncopate')
       .setOrigin(0.5);
 
     start = this.add
@@ -103,18 +99,19 @@ export class Game extends Scene {
                 fontSize: '20px',
                 color: '#ede9e0',
               })
-              .setShadow(1.5, 1, '#965515', 1)
+
               .setOrigin(0.5);
           }
         } else {
           start.setVisible(true);
           play.setVisible(false);
           this.add
-            .text(this.cameras.main.width / 2, 120, `YOU WIN`, {
-              fontFamily: 'Crimson',
-              fontSize: '20px',
-              color: '#ede9e0',
-            })
+            .bitmapText(
+              this.scale.width / 2,
+              this.scale.height / 2,
+              'Syncopate',
+              'YOU WON'
+            )
             .setOrigin(0.5);
         }
       },

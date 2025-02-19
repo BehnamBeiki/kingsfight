@@ -1,7 +1,7 @@
 import { Scene } from 'phaser';
 
 let info,
-  start,
+  play,
   select = 0;
 
 export class GameOver extends Scene {
@@ -10,23 +10,18 @@ export class GameOver extends Scene {
   }
 
   create() {
-    this.add.image(480, 300, 'bg');
-    start = this.add.image(480, 650, 'online_button').setInteractive();
+    const hGap = this.scale.width / 10;
+    const vGap = this.scale.height / 10;
+
+    this.add.image(hGap * 5, vGap * 5, 'bg').setOrigin(0.5, 0.5);
+
+    play = this.add.image(hGap * 5, vGap * 9, 'play_button').setInteractive();
 
     info = this.add
-      .bitmapText(
-        this.scale.width / 2,
-        this.scale.height / 2,
-        'Syncopate',
-        'Made by BehnamBeiki.ir'
-      )
-      .setOrigin(0.5);
+      .bitmapText(hGap * 5, vGap * 5, 'Syncopate', 'Made by BehnamBeiki.ir')
+      .setOrigin(0.5, 0.5);
 
-    //     info.setText(`Made by
-    // behnambeiki.ir
-    // `);
-
-    start.on(
+    play.on(
       'pointerup',
       function () {
         this.scene.start('Boot');

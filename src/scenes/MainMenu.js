@@ -13,7 +13,11 @@ export class MainMenu extends Scene {
   }
 
   create() {
-    this.add.image(480, 360, 'bg');
+    const hGap = this.scale.width / 10;
+    const vGap = this.scale.height / 10;
+
+    this.add.image(hGap * 5, vGap * 5, 'bg').setOrigin(0.5, 0.5);
+
     let card1 = ['king', 'dragon', 'wolf', 'bear', 'snake', 'panter', 'staff'];
     let card2 = [
       'sheild',
@@ -24,16 +28,17 @@ export class MainMenu extends Scene {
       'troll',
       'devil',
     ];
-    let left = 0;
-    let left1 = 0;
-    let j = 120;
+
+    let left = hGap;
+    let left1 = hGap;
+    let j = hGap;
 
     for (let i = 0; i <= 6; i++) {
-      let cards1 = this.add.image((left += j), 120, card1[i]);
+      let cards1 = this.add.image((left += j), vGap * 2, card1[i]);
       cards1.setInteractive();
       cards1.name = 'cards1-' + i;
 
-      let cards2 = this.add.image((left1 += j), 320, card2[i]);
+      let cards2 = this.add.image((left1 += j), vGap * 5, card2[i]);
       cards2.setInteractive();
       cards2.name = 'cards2-' + i;
 
@@ -50,8 +55,9 @@ export class MainMenu extends Scene {
     );
 
     start = this.add
-      .image(this.scale.width / 2, (this.scale.height * 7) / 8, 'online_button')
+      .image(hGap * 5, vGap * 9, 'online_button')
       .setInteractive();
+
     start.on(
       'pointerup',
       function () {
@@ -61,27 +67,10 @@ export class MainMenu extends Scene {
       this
     );
 
-    // const centerX = this.scale.width / 2;
-    // const centerY = this.scale.height / 2;
-    // const leftHalf = this.scale.width / 4;
-    // const rightHalf = (this.scale.width * 3) / 4;
-    // const topHalf = this.scale.height / 4;
-    // const bottomHalf = (this.scale.height * 3) / 4;
-
-    info = this.add
-      .bitmapText(
-        this.scale.width / 2,
-        (this.scale.height * 2) / 3,
-        'Syncopate'
-      )
-      .setOrigin(0.5);
+    info = this.add.bitmapText(hGap * 5, vGap * 7, 'Syncopate').setOrigin(0.5);
 
     warning = this.add
-      .bitmapText(
-        this.scale.width / 2,
-        (this.scale.height * 3) / 4,
-        'Syncopate'
-      )
+      .bitmapText(hGap * 5, vGap * 8, 'Syncopate')
       .setOrigin(0.5);
 
     this.input.mouse.disableContextMenu();

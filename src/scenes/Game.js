@@ -2,6 +2,7 @@ import { Scene } from 'phaser';
 
 let ground,
   info,
+  warning,
   start,
   play,
   player,
@@ -16,6 +17,11 @@ export class Game extends Scene {
   }
 
   create() {
+    const hGap = this.scale.width / 10;
+    const vGap = this.scale.height / 10;
+
+    ground = this.add.image(hGap * 5, vGap * 5, 'bg').setOrigin(0.5, 0.5);
+
     let cards = [
       'king',
       'dragon',
@@ -35,16 +41,18 @@ export class Game extends Scene {
 
     pool = Phaser.Utils.Array.Shuffle(cards).slice(4);
     poolNpc = Phaser.Utils.Array.Shuffle(cards).slice(4);
-    ground = this.add.image(480, 300, 'bg');
 
-    info = this.add
-      .bitmapText(this.scale.width / 2, this.scale.height / 2, 'Syncopate')
+    info = this.add.bitmapText(hGap * 5, vGap * 7, 'Syncopate').setOrigin(0.5);
+
+    warning = this.add
+      .bitmapText(hGap * 5, vGap * 8, 'Syncopate')
       .setOrigin(0.5);
 
     start = this.add
-      .image(480, 650, 'online_button')
+      .image(hGap * 5, vGap * 9, 'online_button')
       .setInteractive()
       .setVisible(false);
+
     start.once(
       'pointerup',
       function () {
@@ -56,33 +64,36 @@ export class Game extends Scene {
       this
     );
 
-    play = this.add.image(480, 650, 'play_button').setInteractive();
+    play = this.add.image(hGap * 5, vGap * 9, 'play_button').setInteractive();
     play.on(
       'pointerup',
 
       function () {
-        player = this.add.image(480, 480, pool[Math.floor(Math.random() * 10)]);
+        player = this.add
+          .image(hGap * 5, vGap * 5, pool[Math.floor(Math.random() * 10)])
+          .setOrigin(0.5, 0.5);
 
         if (ground.texture !== player.texture) {
           this.tweens.add({
             targets: player,
-            y: 300,
+            y: vGap * 3,
             ease: 'Power1',
             duration: 500,
-            delay: 100,
+            delay: 200,
             onStart: onStartHandler,
             onComplete: onCompleteHandler,
             onCompleteParams: [player],
           });
 
           npc = this.add
-            .image(480, 120, poolNpc[Math.floor(Math.random() * 10)])
+            .image(hGap * 5, vGap, poolNpc[Math.floor(Math.random() * 10)])
+            .setOrigin(0.5, 0.5)
             .setVisible(false);
 
           if (player.texture !== npc.texture) {
             this.tweens.add({
               targets: npc,
-              y: 300,
+              y: vGap * 3,
               ease: 'Power1',
               duration: 500,
               delay: 1100,
@@ -90,29 +101,15 @@ export class Game extends Scene {
               onCompleteParams: [npc],
             });
           } else {
+            play.setVisible(false);
             start.setVisible(true);
             npc.setVisible(true);
-            play.setVisible(false);
-            this.add
-              .text(this.cameras.main.width / 2, 470, `YOU LOSE`, {
-                fontFamily: 'Crimson',
-                fontSize: '20px',
-                color: '#ede9e0',
-              })
-
-              .setOrigin(0.5);
+            warning.setText(` YOU LOSE `);
           }
         } else {
-          start.setVisible(true);
           play.setVisible(false);
-          this.add
-            .bitmapText(
-              this.scale.width / 2,
-              this.scale.height / 2,
-              'Syncopate',
-              'YOU WON'
-            )
-            .setOrigin(0.5);
+          start.setVisible(true);
+          warning.setText(` YOU WON `);
         }
       },
       this
@@ -135,6 +132,6 @@ export class Game extends Scene {
   }
 
   update() {
-    info.setText(` Round ${round}`);
+    info.setText(`Round ${round}`);
   }
 }

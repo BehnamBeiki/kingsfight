@@ -2,7 +2,7 @@ import { Scene } from 'phaser';
 
 let start,
   info,
-  warning,
+  warn,
   select = 0,
   pool = [],
   poolDeleted = [];
@@ -69,9 +69,7 @@ export class MainMenu extends Scene {
 
     info = this.add.bitmapText(hGap * 5, vGap * 7, 'Syncopate').setOrigin(0.5);
 
-    warning = this.add
-      .bitmapText(hGap * 5, vGap * 8, 'Syncopate')
-      .setOrigin(0.5);
+    warn = this.add.bitmapText(hGap * 5, vGap * 8, 'Syncopate').setOrigin(0.5);
 
     this.input.mouse.disableContextMenu();
   }
@@ -80,13 +78,13 @@ export class MainMenu extends Scene {
     info.setText(`You have selected ${select} cards`);
 
     if (select === 10) {
-      warning.setText(`You're good to go`);
+      warn.setText(`You're good to go`);
       start.setVisible(true);
     } else if (select < 10) {
-      warning.setText(`Please add ${10 - select} cards`);
+      warn.setText(`Please add ${10 - select} cards`);
       start.setVisible(false);
     } else if (select > 10) {
-      warning.setText(`Please remove ${Math.abs(10 - select)} cards`);
+      warn.setText(`Please remove ${Math.abs(10 - select)} cards`);
       start.setVisible(false);
     }
   }

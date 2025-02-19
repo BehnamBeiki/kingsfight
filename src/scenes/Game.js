@@ -2,7 +2,7 @@ import { Scene } from 'phaser';
 
 let ground,
   info,
-  warning,
+  warn,
   start,
   play,
   player,
@@ -44,9 +44,7 @@ export class Game extends Scene {
 
     info = this.add.bitmapText(hGap * 5, vGap * 7, 'Syncopate').setOrigin(0.5);
 
-    warning = this.add
-      .bitmapText(hGap * 5, vGap * 8, 'Syncopate')
-      .setOrigin(0.5);
+    warn = this.add.bitmapText(hGap * 5, vGap * 8, 'Syncopate').setOrigin(0.5);
 
     start = this.add
       .image(hGap * 5, vGap * 9, 'online_button')
@@ -104,12 +102,12 @@ export class Game extends Scene {
             play.setVisible(false);
             start.setVisible(true);
             npc.setVisible(true);
-            warning.setText(` YOU LOSE `);
+            warn.setText(` YOU LOSE `);
           }
         } else {
           play.setVisible(false);
           start.setVisible(true);
-          warning.setText(` YOU WON `);
+          warn.setText(` YOU WON `);
         }
       },
       this

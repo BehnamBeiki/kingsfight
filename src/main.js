@@ -9,3 +9,4 @@ export default new Phaser.Game({
   scene: scenes,
 });
 
+// resizeWindow(game);

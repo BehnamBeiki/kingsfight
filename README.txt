@@ -22,7 +22,7 @@
 │       ├── config.js           # Webpack configuration file
 │       └── config.prod.js      # Webpack configuration file (build)
 ├── .gitignore                  # Git ignore file
-├── .bebelrc                    # Bebel configuration file
+├── .babelrc                    # Bebel configuration file
 ├── index.html                  # HTML file that loads the game
 ├── log.js                      # log file
 ├── package.json                # NPM package configuration (dependencies, scripts, etc.)

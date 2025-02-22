@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 
-export const CONFIG = {
+export const config  = {
   type: Phaser.AUTO,
   width: window.innerWidth,
   height: window.innerHeight,

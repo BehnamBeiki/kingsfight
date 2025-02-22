@@ -4,4 +4,4 @@ import { MainMenu } from './scenes/MainMenu';
 import { Game } from './scenes/Game';
 import { GameOver } from './scenes/GameOver';
 
-export const SCENES = [Boot, Preloader, MainMenu, Game, GameOver];
+export default [Boot, Preloader, MainMenu, Game, GameOver];

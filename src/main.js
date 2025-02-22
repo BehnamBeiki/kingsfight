@@ -9,9 +9,3 @@ export default new Phaser.Game({
   scene: scenes,
 });
 
-// const game = new Phaser.Game({
-//   ...CONFIG,
-//   scene: SCENES,
-// });
-
-// resizeWindow(game);

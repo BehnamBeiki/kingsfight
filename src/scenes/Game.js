@@ -63,63 +63,57 @@ export class Game extends Scene {
 
     play = this.add.image(hGap * 5, vGap * 9, 'play_button').setInteractive();
 
-    play.on(
-      'pointerup',
-      () => {
-        player = this.add
-          .image(hGap * 5, vGap * 5, Phaser.Utils.Array.GetRandom(playerPool))
-          .setOrigin(0.5, 0.5);
+    play.on('pointerup', () => {
+      player = this.add
+        .image(hGap * 5, vGap * 5, Phaser.Utils.Array.GetRandom(playerPool))
+        .setOrigin(0.5, 0.5);
 
-        if (ground.texture.key !== player.texture.key) {
+      if (ground.texture.key !== player.texture.key) {
+        this.tweens.add({
+          targets: player,
+          y: vGap * 3,
+          ease: 'Power1',
+          duration: 500,
+          delay: 200,
+          onStart: () => {
+            play.setVisible(false);
+            round++;
+          },
+          onComplete: () => {
+            ground.texture.key = player.texture.key;
+            npc.setVisible(true);
+          },
+        });
+
+        npc = this.add
+          .image(hGap * 5, vGap, Phaser.Utils.Array.GetRandom(npcPool))
+          .setOrigin(0.5, 0.5)
+          .setVisible(false);
+
+        if (player.texture.key !== npc.texture.key) {
           this.tweens.add({
-            targets: player,
+            targets: npc,
             y: vGap * 3,
             ease: 'Power1',
             duration: 500,
-            delay: 200,
-            onStart: () => {
-              play.setVisible(false);
-              round++;
-            },
+            delay: 1100,
             onComplete: () => {
-              ground.texture.key = player.texture.key;
-              npc.setVisible(true);
+              ground.texture.key = npc.texture.key;
+              play.setVisible(true);
             },
-            onCompleteParams: [player],
           });
-
-          npc = this.add
-            .image(hGap * 5, vGap, Phaser.Utils.Array.GetRandom(npcPool))
-            .setOrigin(0.5, 0.5)
-            .setVisible(false);
-
-          if (player.texture.key !== npc.texture.key) {
-            this.tweens.add({
-              targets: npc,
-              y: vGap * 3,
-              ease: 'Power1',
-              duration: 500,
-              delay: 1100,
-              onComplete: () => {
-                ground.texture.key = npc.texture.key;
-                play.setVisible(true);
-              },
-              onCompleteParams: [npc],
-            });
-          } else {
-            play.setVisible(false);
-            start.setVisible(true);
-            npc.setVisible(true);
-            warn.setText(` YOU LOSE `);
-          }
         } else {
           play.setVisible(false);
           start.setVisible(true);
-          warn.setText(` YOU WON `);
+          npc.setVisible(true);
+          warn.setText(` YOU LOSE `);
         }
-      },
-      this
-    );
+      } else {
+        play.setVisible(false);
+        start.setVisible(true);
+        warn.setText(` YOU WON `);
+      }
+    });
   }
 
   update() {

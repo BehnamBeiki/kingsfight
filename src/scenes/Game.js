@@ -8,8 +8,6 @@ let ground,
   player,
   npc,
   round = 0;
-// pool = [],
-// poolNpc = [];
 
 export class Game extends Scene {
   constructor() {
@@ -40,8 +38,8 @@ export class Game extends Scene {
       'devil',
     ];
 
-    let pool = Phaser.Utils.Array.Shuffle(cards).slice(0, 10);
-    let poolNpc = Phaser.Utils.Array.Shuffle(cards).slice(0, 10);
+    let playerPool = Phaser.Utils.Array.Shuffle(cards).slice(0, 10);
+    let npcPool = Phaser.Utils.Array.Shuffle(cards).slice(0, 10);
 
     info = this.add
       .bitmapText(hGap * 5, vGap * 7, 'Syncopate', '')
@@ -58,8 +56,8 @@ export class Game extends Scene {
     start.once('pointerup', () => {
       this.scene.start('GameOver');
       round = 0;
-      pool = [];
-      poolNpc = [];
+      playerPool = [];
+      npcPool = [];
     });
 
     play = this.add.image(hGap * 5, vGap * 9, 'play_button').setInteractive();
@@ -68,9 +66,9 @@ export class Game extends Scene {
       'pointerup',
       function () {
         player = this.add
-          .image(hGap * 5, vGap * 5, Phaser.Utils.Array.GetRandom(pool))
+          .image(hGap * 5, vGap * 5, Phaser.Utils.Array.GetRandom(playerPool))
           .setOrigin(0.5, 0.5);
-
+        // pool[Math.floor(Math.random() * 10)]
         if (ground.texture.key !== player.texture.key) {
           this.tweens.add({
             targets: player,
@@ -89,7 +87,7 @@ export class Game extends Scene {
           });
 
           npc = this.add
-            .image(hGap * 5, vGap, Phaser.Utils.Array.GetRandom(poolNpc))
+            .image(hGap * 5, vGap, Phaser.Utils.Array.GetRandom(npcPool))
             .setOrigin(0.5, 0.5)
             .setVisible(false);
 

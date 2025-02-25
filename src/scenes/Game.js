@@ -8,6 +8,7 @@ let ground,
   player,
   npc,
   playerCard,
+  npcCard,
   round = 0;
 
 export class Game extends Scene {
@@ -89,12 +90,13 @@ export class Game extends Scene {
             onCompleteParams: [player],
           });
 
+          const npcCard = Phaser.Utils.Array.GetRandom(npcPool);
           npc = this.add
-            .image(hGap * 5, vGap, Phaser.Utils.Array.GetRandom(npcPool))
+            .image(hGap * 5, vGap, npcCard)
             .setOrigin(0.5, 0.5)
             .setVisible(false);
 
-          if (playerCard !== npc.texture.key) {
+          if (playerCard !== npcCard) {
             this.tweens.add({
               targets: npc,
               y: vGap * 3,
@@ -130,7 +132,7 @@ export class Game extends Scene {
     }
 
     function onCompleteHandler1() {
-      ground.texture.key = npc.texture.key;
+      ground.texture.key = npcCard;
       play.setVisible(true);
     }
   }

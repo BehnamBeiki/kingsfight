@@ -7,6 +7,7 @@ let ground,
   play,
   player,
   npc,
+  playerCard,
   round = 0;
 
 export class Game extends Scene {
@@ -41,9 +42,6 @@ export class Game extends Scene {
     let playerPool = Phaser.Utils.Array.Shuffle(cards).slice(0, 10);
     let npcPool = Phaser.Utils.Array.Shuffle(cards).slice(0, 10);
 
-    const playerCard = Phaser.Utils.Array.GetRandom(playerPool);
-    const npcCard = Phaser.Utils.Array.GetRandom(npcPool);
-
     info = this.add
       .bitmapText(hGap * 5, vGap * 7, 'Syncopate', '')
       .setOrigin(0.5);
@@ -68,13 +66,10 @@ export class Game extends Scene {
     play.on(
       'pointerup',
       function () {
-        player = this.add.image(hGap * 5, vGap * 5, playerCard).setOrigin(0.5);
-        // playerPool[Math.floor(Math.random() * 10)]
-
-        npc = this.add
-          .image(hGap * 5, vGap, npcCard)
-          .setOrigin(0.5)
-          .setVisible(false);
+        playerCard = Phaser.Utils.Array.GetRandom(playerPool);
+        player = this.add
+          .image(hGap * 5, vGap * 5, playerCard)
+          .setOrigin(0.5, 0.5);
 
         if (ground.texture.key !== playerCard) {
           this.tweens.add({
@@ -93,7 +88,12 @@ export class Game extends Scene {
             onCompleteParams: [player],
           });
 
-          if (playerCard !== npcCard) {
+          npc = this.add
+            .image(hGap * 5, vGap, Phaser.Utils.Array.GetRandom(npcPool))
+            .setOrigin(0.5, 0.5)
+            .setVisible(false);
+
+          if (playerCard !== npc.texture.key) {
             this.tweens.add({
               targets: npc,
               y: vGap * 3,
@@ -129,7 +129,7 @@ export class Game extends Scene {
     }
 
     function onCompleteHandler1() {
-      ground.texture.key = npcCard;
+      ground.texture.key = npc.texture.key;
       play.setVisible(true);
     }
   }

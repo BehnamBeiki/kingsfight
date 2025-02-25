@@ -82,7 +82,10 @@ export class Game extends Scene {
             //   play.setVisible(false);
             //   round++;
             // },
-            onComplete: onCompleteHandler,
+            onComplete: () => {
+              npc.setVisible(true);
+            },
+            // onComplete: onCompleteHandler,
             onCompleteParams: [player],
           });
 
@@ -122,9 +125,9 @@ export class Game extends Scene {
       round++;
     }
 
-    function onCompleteHandler() {
-      npc.setVisible(true);
-    }
+    // function onCompleteHandler() {
+    //   npc.setVisible(true);
+    // }
 
     function onCompleteHandler1() {
       ground.texture.key = npc.texture.key;

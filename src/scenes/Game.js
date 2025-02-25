@@ -7,9 +7,9 @@ let ground,
   play,
   player,
   npc,
-  playerCard,
-  npcCard,
   round = 0;
+// pool = [],
+// poolNpc = [];
 
 export class Game extends Scene {
   constructor() {
@@ -40,8 +40,8 @@ export class Game extends Scene {
       'devil',
     ];
 
-    let playerPool = Phaser.Utils.Array.Shuffle(cards).slice(0, 10);
-    let npcPool = Phaser.Utils.Array.Shuffle(cards).slice(0, 10);
+    let pool = Phaser.Utils.Array.Shuffle(cards).slice(0, 10);
+    let poolNpc = Phaser.Utils.Array.Shuffle(cards).slice(0, 10);
 
     info = this.add
       .bitmapText(hGap * 5, vGap * 7, 'Syncopate', '')
@@ -58,8 +58,8 @@ export class Game extends Scene {
     start.once('pointerup', () => {
       this.scene.start('GameOver');
       round = 0;
-      playerPool = [];
-      npcPool = [];
+      pool = [];
+      poolNpc = [];
     });
 
     play = this.add.image(hGap * 5, vGap * 9, 'play_button').setInteractive();
@@ -67,13 +67,11 @@ export class Game extends Scene {
     play.on(
       'pointerup',
       function () {
-        playerCard = Phaser.Utils.Array.GetRandom(playerPool);
-        // playerCard = playerPool[Math.floor(Math.random() * 10)]
         player = this.add
-          .image(hGap * 5, vGap * 5, playerCard)
+          .image(hGap * 5, vGap * 5, Phaser.Utils.Array.GetRandom(pool))
           .setOrigin(0.5, 0.5);
 
-        if (ground.texture.key !== playerCard) {
+        if (ground.texture.key !== player.texture.key) {
           this.tweens.add({
             targets: player,
             y: vGap * 3,
@@ -90,13 +88,12 @@ export class Game extends Scene {
             onCompleteParams: [player],
           });
 
-          const npcCard = Phaser.Utils.Array.GetRandom(npcPool);
           npc = this.add
-            .image(hGap * 5, vGap, npcCard)
+            .image(hGap * 5, vGap, Phaser.Utils.Array.GetRandom(poolNpc))
             .setOrigin(0.5, 0.5)
             .setVisible(false);
 
-          if (playerCard !== npcCard) {
+          if (player.texture.key !== npc.texture.key) {
             this.tweens.add({
               targets: npc,
               y: vGap * 3,
@@ -122,7 +119,7 @@ export class Game extends Scene {
     );
 
     function onStartHandler() {
-      ground.texture.key = playerCard;
+      ground.texture.key = player.texture.key;
       play.setVisible(false);
       round++;
     }
@@ -132,7 +129,7 @@ export class Game extends Scene {
     }
 
     function onCompleteHandler1() {
-      ground.texture.key = npcCard;
+      ground.texture.key = npc.texture.key;
       play.setVisible(true);
     }
   }

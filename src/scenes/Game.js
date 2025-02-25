@@ -67,6 +67,7 @@ export class Game extends Scene {
       'pointerup',
       function () {
         playerCard = Phaser.Utils.Array.GetRandom(playerPool);
+        // playerCard = playerPool[Math.floor(Math.random() * 10)]
         player = this.add
           .image(hGap * 5, vGap * 5, playerCard)
           .setOrigin(0.5, 0.5);

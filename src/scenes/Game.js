@@ -18,7 +18,7 @@ export class Game extends Scene {
     const hGap = this.scale.width / 10;
     const vGap = this.scale.height / 10;
 
-    // this.add.image(hGap * 5, vGap * 5, 'bg').setOrigin(0.5, 0.5);
+    this.add.image(hGap * 5, vGap * 5, 'bg').setOrigin(0.5, 0.5);
     ground = this.add.image(hGap * 5, vGap * 5, 'bg').setOrigin(0.5, 0.5);
 
     const cards = [
@@ -44,6 +44,7 @@ export class Game extends Scene {
     info = this.add
       .bitmapText(hGap * 5, vGap * 7, 'Syncopate', '')
       .setOrigin(0.5);
+
     warn = this.add
       .bitmapText(hGap * 5, vGap * 8, 'Syncopate', '')
       .setOrigin(0.5);
@@ -64,11 +65,11 @@ export class Game extends Scene {
 
     play.on(
       'pointerup',
-      function () {
+      () => {
         player = this.add
           .image(hGap * 5, vGap * 5, Phaser.Utils.Array.GetRandom(playerPool))
           .setOrigin(0.5, 0.5);
-        // pool[Math.floor(Math.random() * 10)]
+
         if (ground.texture.key !== player.texture.key) {
           this.tweens.add({
             targets: player,
@@ -76,16 +77,14 @@ export class Game extends Scene {
             ease: 'Power1',
             duration: 500,
             delay: 200,
-            onStart: onStartHandler,
-            // onStart: () => {
-            //   ground.setTexture(player);
-            //   play.setVisible(false);
-            //   round++;
-            // },
+            onStart: () => {
+              play.setVisible(false);
+              round++;
+            },
             onComplete: () => {
+              ground.texture.key = player.texture.key;
               npc.setVisible(true);
             },
-            // onComplete: onCompleteHandler,
             onCompleteParams: [player],
           });
 
@@ -101,7 +100,10 @@ export class Game extends Scene {
               ease: 'Power1',
               duration: 500,
               delay: 1100,
-              onComplete: onCompleteHandler1,
+              onComplete: () => {
+                ground.texture.key = npc.texture.key;
+                play.setVisible(true);
+              },
               onCompleteParams: [npc],
             });
           } else {
@@ -118,21 +120,6 @@ export class Game extends Scene {
       },
       this
     );
-
-    function onStartHandler() {
-      ground.texture.key = player.texture.key;
-      play.setVisible(false);
-      round++;
-    }
-
-    // function onCompleteHandler() {
-    //   npc.setVisible(true);
-    // }
-
-    function onCompleteHandler1() {
-      ground.texture.key = npc.texture.key;
-      play.setVisible(true);
-    }
   }
 
   update() {

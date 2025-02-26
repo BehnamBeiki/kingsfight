@@ -20,9 +20,9 @@ export class Game extends Scene {
       'wolf',
       'bear',
       'snake',
-      'panter',
+      'panther',
       'staff',
-      'sheild',
+      'shield',
       'flame',
       'fruit',
       'ogre',
@@ -75,6 +75,7 @@ export class Game extends Scene {
             round++;
           },
           onComplete: () => {
+            ground.texture.key = player.texture.key;
             let npc = this.add
               .image(hGap * 5, vGap, Phaser.Utils.Array.GetRandom(npcPool))
               .setOrigin(0.5, 0.5);

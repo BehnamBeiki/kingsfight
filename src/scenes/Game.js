@@ -12,8 +12,7 @@ export class Game extends Scene {
     const hGap = this.scale.width / 10;
     const vGap = this.scale.height / 10;
 
-    this.add.image(hGap * 5, vGap * 5, 'bg').setOrigin(0.5, 0.5);
-    let ground = this.add.image(hGap * 5, vGap * 5, 'bg').setOrigin(0.5, 0.5);
+    const ground = this.add.image(hGap * 5, vGap * 5, 'bg').setOrigin(0.5, 0.5);
 
     const cards = [
       'king',

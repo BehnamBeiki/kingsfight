@@ -1,19 +1,18 @@
-**Duplicutter**
+# Duplicutter
 
 Duplicutter is a simple card game based on pure luck!
 
-_Rule:_
+## _Rule:_
 
 After creating a deck of 10 cards, the first player to match a card with the one on the ground wins; so the duplicated card cuts the game.
 
-_Made by:_
+## _Made by_
 
-Behnam Beiki
+- [Behnam Beiki](https://behnambeiki.ir)
 
-https://behnambeiki.ir
+## _Credits:_
 
-_Credits:_
+This template has been updated for:
 
-Phaser
-
-Webpack
+- [Phaser](https://github.com/phaserjs/phaser)
+- [Webpack](https://github.com/webpack/webpack)

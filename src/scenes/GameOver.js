@@ -1,7 +1,6 @@
 import { Scene } from 'phaser';
 
 let info,
-  play,
   select = 0;
 
 export class GameOver extends Scene {
@@ -15,11 +14,37 @@ export class GameOver extends Scene {
 
     this.add.image(hGap * 5, vGap * 5, 'bg').setOrigin(0.5, 0.5);
 
-    play = this.add.image(hGap * 5, vGap * 9, 'play_button').setInteractive();
+    const play = this.add
+      .image(hGap * 5, vGap * 9, 'play_button')
+      .setInteractive();
 
     info = this.add
       .bitmapText(hGap * 5, vGap * 5, 'Syncopate', 'Made by BehnamBeiki.ir')
-      .setOrigin(0.5, 0.5);
+      .setOrigin(0.5, 0.5)
+      .setInteractive();
+
+    info.on('pointerover', () => {
+      info.setTint(0xff0000);
+      this.tweens.add({
+        targets: info,
+        scale: 1.2,
+        duration: 200,
+        ease: 'Power2',
+      });
+    });
+
+    info.on('pointerout', () => {
+      info.clearTint();
+      this.tweens.add({
+        targets: info,
+        scale: 1,
+        duration: 200,
+        ease: 'Power2',
+      });
+    });
+    info.on('pointerup', () => {
+      window.open('https://behnambeiki.ir', '_blank');
+    });
 
     play.on(
       'pointerup',

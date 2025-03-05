@@ -79,7 +79,7 @@ export class MainMenu extends Scene {
 
   clickHandler(cards) {
     if (!cards.isTinted) {
-      cards.setTint(0x008080);
+      cards.setTint(0x666666);
       select++;
       if (!pool.includes(cards.texture.key)) pool.push(cards.texture.key);
     } else {

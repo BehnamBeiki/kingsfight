@@ -24,7 +24,7 @@ export class GameOver extends Scene {
       .setInteractive();
 
     info.on('pointerover', () => {
-      info.setTint(0xff0000);
+      info.setTint(0x666666);
       this.tweens.add({
         targets: info,
         scale: 1.2,

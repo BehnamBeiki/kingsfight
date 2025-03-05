@@ -31,8 +31,7 @@ export class Game extends Scene {
       'devil',
     ];
 
-    let playerPool =
-      data.playerPool || Phaser.Utils.Array.Shuffle(cards).slice(0, 10);
+    let playerPool = data.playerPool;
     let npcPool = Phaser.Utils.Array.Shuffle(cards).slice(0, 10);
 
     info = this.add

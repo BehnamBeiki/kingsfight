@@ -3,9 +3,8 @@ import { Scene } from 'phaser';
 let start,
   info,
   warn,
-  select = 0,
-  pool = [],
-  poolDeleted = [];
+  select = 0;
+export let pool = [];
 
 export class MainMenu extends Scene {
   constructor() {
@@ -18,58 +17,60 @@ export class MainMenu extends Scene {
 
     this.add.image(hGap * 5, vGap * 5, 'bg').setOrigin(0.5, 0.5);
 
-    let card1 = ['king', 'dragon', 'wolf', 'bear', 'snake', 'panter', 'staff'];
-    let card2 = [
-      'sheild',
+    const card1 = Phaser.Utils.Array.Shuffle([
+      'king',
+      'dragon',
+      'wolf',
+      'bear',
+      'snake',
+      'panther',
+      'staff',
+    ]);
+    const card2 = Phaser.Utils.Array.Shuffle([
+      'shield',
       'flame',
       'fruit',
       'ogre',
       'centaur',
       'troll',
       'devil',
-    ];
+    ]);
 
     let left = hGap;
     let left1 = hGap;
-    let j = hGap;
+    const j = hGap;
 
-    for (let i = 0; i <= 6; i++) {
-      let cards1 = this.add.image((left += j), vGap * 2, card1[i]);
-      cards1.setInteractive();
-      cards1.name = 'cards1-' + i;
+    card1.forEach((card, i) => {
+      const cards1 = this.add
+        .image((left += j), vGap * 2, card)
+        .setInteractive();
+      cards1.name = `cards1-${i}`;
+      cards1.on('pointerup', () => this.clickHandler(cards1));
+    });
 
-      let cards2 = this.add.image((left1 += j), vGap * 5, card2[i]);
-      cards2.setInteractive();
-      cards2.name = 'cards2-' + i;
+    card2.forEach((card, i) => {
+      const cards2 = this.add
+        .image((left1 += j), vGap * 5, card)
+        .setInteractive();
+      cards2.name = `cards2-${i}`;
 
-      cards1.on('clicked', this.clickHandler, this);
-      cards2.on('clicked', this.clickHandler, this);
-    }
-
-    this.input.on(
-      'gameobjectup',
-      function (pointer, gameObject) {
-        gameObject.emit('clicked', gameObject);
-      },
-      this
-    );
+      cards2.on('pointerup', () => this.clickHandler(cards2));
+    });
 
     start = this.add
       .image(hGap * 5, vGap * 9, 'online_button')
       .setInteractive();
+    start.on('pointerup', () => {
+      this.scene.start('Game', { playerPool: pool });
+      select = 0;
+    });
 
-    start.on(
-      'pointerup',
-      function () {
-        this.scene.start('Game');
-        select = 0;
-      },
-      this
-    );
-
-    info = this.add.bitmapText(hGap * 5, vGap * 7, 'Syncopate').setOrigin(0.5);
-
-    warn = this.add.bitmapText(hGap * 5, vGap * 8, 'Syncopate').setOrigin(0.5);
+    info = this.add
+      .bitmapText(hGap * 5, vGap * 7, 'Syncopate', '')
+      .setOrigin(0.5);
+    warn = this.add
+      .bitmapText(hGap * 5, vGap * 8, 'Syncopate', '')
+      .setOrigin(0.5);
 
     this.input.mouse.disableContextMenu();
   }
@@ -78,26 +79,27 @@ export class MainMenu extends Scene {
     info.setText(`You have selected ${select} cards`);
 
     if (select === 10) {
-      warn.setText(`You're good to go`);
+      warn.setText("You're good to go");
       start.setVisible(true);
     } else if (select < 10) {
       warn.setText(`Please add ${10 - select} cards`);
       start.setVisible(false);
-    } else if (select > 10) {
-      warn.setText(`Please remove ${Math.abs(10 - select)} cards`);
+    } else {
+      warn.setText(`Please remove ${select - 10} cards`);
       start.setVisible(false);
     }
   }
 
   clickHandler(cards) {
-    if (cards.isTinted == 0) {
+    if (!cards.isTinted) {
       cards.setTint(0x008080);
       select++;
-      pool[pool.length] = cards.texture;
+      if (!pool.includes(cards.texture.key)) pool.push(cards.texture.key);
     } else {
       cards.clearTint();
       select--;
-      poolDeleted = pool.splice(pool.indexOf(cards.texture), 1);
+      const index = pool.indexOf(cards.texture.key);
+      if (index !== -1) pool.splice(index, 1);
     }
   }
 }

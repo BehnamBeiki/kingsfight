@@ -15,9 +15,9 @@ export class Preloader extends Scene {
     this.load.image('wolf', 'group_1034.png');
     this.load.image('bear', 'group_1035.png');
     this.load.image('snake', 'group_1036.png');
-    this.load.image('panter', 'group_1037.png');
+    this.load.image('panther', 'group_1037.png');
     this.load.image('staff', 'group_1038.png');
-    this.load.image('sheild', 'group_1039.png');
+    this.load.image('shield', 'group_1039.png');
     this.load.image('flame', 'group_1040.png');
     this.load.image('fruit', 'group_1041.png');
     this.load.image('ogre', 'group_1043.png');

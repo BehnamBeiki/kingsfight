@@ -8,7 +8,7 @@ export class Game extends Scene {
     super('Game');
   }
 
-  create() {
+  create(data) {
     const hGap = this.scale.width / 10;
     const vGap = this.scale.height / 10;
 
@@ -20,9 +20,9 @@ export class Game extends Scene {
       'wolf',
       'bear',
       'snake',
-      'panter',
+      'panther',
       'staff',
-      'sheild',
+      'shield',
       'flame',
       'fruit',
       'ogre',
@@ -31,7 +31,8 @@ export class Game extends Scene {
       'devil',
     ];
 
-    let playerPool = Phaser.Utils.Array.Shuffle(cards).slice(0, 10);
+    let playerPool =
+      data.playerPool || Phaser.Utils.Array.Shuffle(cards).slice(0, 10);
     let npcPool = Phaser.Utils.Array.Shuffle(cards).slice(0, 10);
 
     info = this.add

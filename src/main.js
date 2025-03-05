@@ -1,12 +1,9 @@
 import Phaser from 'phaser';
 import './style.css';
-import { config  } from './config';
-import  scenes  from './scenes';
-// import { resizeWindow } from './resizeWindow';
+import { config } from './config';
+import scenes from './scenes';
 
 export default new Phaser.Game({
-  ...config ,
+  ...config,
   scene: scenes,
 });
-
-// resizeWindow(game);

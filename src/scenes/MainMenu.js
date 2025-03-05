@@ -4,6 +4,7 @@ let start,
   info,
   warn,
   select = 0;
+
 export let pool = [];
 
 export class MainMenu extends Scene {

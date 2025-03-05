@@ -19,7 +19,7 @@ export class GameOver extends Scene {
       .setInteractive();
 
     info = this.add
-      .bitmapText(hGap * 5, vGap * 5, 'Syncopate', 'Made by BehnamBeiki.ir')
+      .bitmapText(hGap * 5, vGap * 5, 'Syncopate', 'Made by VirtualLich.com')
       .setOrigin(0.5, 0.5)
       .setInteractive();
 
@@ -43,7 +43,7 @@ export class GameOver extends Scene {
       });
     });
     info.on('pointerup', () => {
-      window.open('https://behnambeiki.ir', '_blank');
+      window.open('https://virtuallich.com', '_blank');
     });
 
     play.on(

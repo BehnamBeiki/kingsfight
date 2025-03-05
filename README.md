@@ -8,7 +8,7 @@ After creating a deck of 10 cards, the first player to match a card with the one
 
 ## _Made by_
 
-- [Behnam Beiki](https://behnambeiki.ir)
+- [Virtual Lich](https://virtuallich.com)
 
 ## _Credits:_
 

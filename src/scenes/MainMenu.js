@@ -18,7 +18,7 @@ export class MainMenu extends Scene {
 
     this.add.image(hGap * 5, vGap * 5, 'bg').setOrigin(0.5, 0.5);
 
-    const card1 = Phaser.Utils.Array.Shuffle([
+    const cards = Phaser.Utils.Array.Shuffle([
       'king',
       'dragon',
       'wolf',
@@ -26,8 +26,6 @@ export class MainMenu extends Scene {
       'snake',
       'panther',
       'staff',
-    ]);
-    const card2 = Phaser.Utils.Array.Shuffle([
       'shield',
       'flame',
       'fruit',
@@ -37,25 +35,13 @@ export class MainMenu extends Scene {
       'devil',
     ]);
 
-    let left = hGap;
-    let left1 = hGap;
-    const j = hGap;
-
-    card1.forEach((card, i) => {
-      const cards1 = this.add
-        .image((left += j), vGap * 2, card)
-        .setInteractive();
-      cards1.name = `cards1-${i}`;
-      cards1.on('pointerup', () => this.clickHandler(cards1));
-    });
-
-    card2.forEach((card, i) => {
-      const cards2 = this.add
-        .image((left1 += j), vGap * 5, card)
-        .setInteractive();
-      cards2.name = `cards2-${i}`;
-
-      cards2.on('pointerup', () => this.clickHandler(cards2));
+    cards.forEach((card, i) => {
+      const row = Math.floor(i / 7);
+      const x = hGap * ((i % 7) + 1);
+      const y = vGap * (row === 0 ? 2 : 5);
+      const cardImage = this.add.image(x + hGap, y, card).setInteractive();
+      cardImage.name = `card-${i}`;
+      cardImage.on('pointerup', () => this.clickHandler(cardImage));
     });
 
     start = this.add

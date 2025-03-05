@@ -1,6 +1,5 @@
 import { Scene } from 'phaser';
 
-
 let info,
   round = 0;
 
@@ -15,8 +14,6 @@ export class Game extends Scene {
 
     const ground = this.add.image(hGap * 5, vGap * 5, 'bg').setOrigin(0.5, 0.5);
 
-   
-    
     const cards = [
       'king',
       'dragon',
